@@ -5,6 +5,7 @@ use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
 
 use App\Models\UserModel;
+use App\Models\User_AppointmentModel;
 use App\Controllers\BaseController;
 
 class UserController extends ResourceController
@@ -54,5 +55,11 @@ class UserController extends ResourceController
     public function index()
     {
         //
+    }
+
+    public function getData(){
+        $main = new User_AppointmentModel();
+        $data = $main->findAll();
+        return $this->respond($data, 200);
     }
 }

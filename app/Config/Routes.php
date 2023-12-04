@@ -7,3 +7,4 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 $routes->match(['post', 'get'], '/api/login', 'UserController::login');
+$routes->get('/getData', 'UserController::getData');
