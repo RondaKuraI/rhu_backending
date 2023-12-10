@@ -1,0 +1,41 @@
+ERROR - 2023-12-10 10:05:39 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\laragon\www\rhu_backending\system\Database\MySQLi\Connection.php:185
+Stack trace:
+#0 C:\laragon\www\rhu_backending\system\Database\MySQLi\Connection.php(185): mysqli->real_connect('localhost', 'root', '', 'backend', 3306, '', 0)
+#1 C:\laragon\www\rhu_backending\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\rhu_backending\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\rhu_backending\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\rhu_backending\system\Model.php(237): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\rhu_backending\system\BaseModel.php(624): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\laragon\www\rhu_backending\app\Controllers\UserController.php(78): CodeIgniter\BaseModel->findAll()
+#7 C:\laragon\www\rhu_backending\system\CodeIgniter.php(919): App\Controllers\UserController->getpatrecData()
+#8 C:\laragon\www\rhu_backending\system\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UserController))
+#9 C:\laragon\www\rhu_backending\system\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\rhu_backending\public\index.php(86): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\laragon\www\rhu_backending\system\Database\MySQLi\Connection.php:229
+Stack trace:
+#0 C:\laragon\www\rhu_backending\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\rhu_backending\system\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\rhu_backending\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\rhu_backending\system\Model.php(237): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\rhu_backending\system\BaseModel.php(624): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\laragon\www\rhu_backending\app\Controllers\UserController.php(78): CodeIgniter\BaseModel->findAll()
+#6 C:\laragon\www\rhu_backending\system\CodeIgniter.php(919): App\Controllers\UserController->getpatrecData()
+#7 C:\laragon\www\rhu_backending\system\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UserController))
+#8 C:\laragon\www\rhu_backending\system\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\rhu_backending\public\index.php(86): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-12-10 10:05:39 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `patient_records`', [], false)
+ 3 SYSTEMPATH\Model.php(237): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(624): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\UserController.php(78): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\UserController->getpatrecData()
+ 7 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UserController))
+ 8 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(86): CodeIgniter\CodeIgniter->run()

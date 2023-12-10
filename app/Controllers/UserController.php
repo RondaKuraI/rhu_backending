@@ -6,6 +6,10 @@ use CodeIgniter\API\ResponseTrait;
 
 use App\Models\UserModel;
 use App\Models\User_AppointmentModel;
+use App\Models\User_RecordsModel;
+use App\Models\PatientRecordsModel;
+
+
 use App\Controllers\BaseController;
 
 class UserController extends ResourceController
@@ -59,6 +63,18 @@ class UserController extends ResourceController
 
     public function getData(){
         $main = new User_AppointmentModel();
+        $data = $main->findAll();
+        return $this->respond($data, 200);
+    }
+
+    public function getData2(){
+        $main = new User_RecordsModel();
+        $data = $main->findAll();
+        return $this->respond($data, 200);
+    }
+
+    public function getpatrecData(){
+        $main = new PatientRecordsModel();
         $data = $main->findAll();
         return $this->respond($data, 200);
     }
