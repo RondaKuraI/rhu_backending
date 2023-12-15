@@ -8,6 +8,7 @@ use App\Models\UserModel;
 use App\Models\User_AppointmentModel;
 use App\Models\User_RecordsModel;
 use App\Models\PatientRecordsModel;
+use App\Models\AppointmentModel;
 
 
 use App\Controllers\BaseController;
@@ -67,6 +68,12 @@ class UserController extends ResourceController
         return $this->respond($data, 200);
     }
 
+    public function getAppointment_Data(){
+        $main = new AppointmentModel();
+        $data = $main->findAll();
+        return $this->respond($data, 200);
+    }
+
     public function getData2(){
         $main = new User_RecordsModel();
         $data = $main->findAll();
@@ -77,5 +84,26 @@ class UserController extends ResourceController
         $main = new PatientRecordsModel();
         $data = $main->findAll();
         return $this->respond($data, 200);
+    }
+
+    public function save(){
+        $json = $this->request->getJSON();
+        $data = [
+            'first_name' => $json->first_name,
+            'middle_name' => $json->middle_name,
+            'last_name' => $json->last_name,
+            'birthdate' => $json->birthdate,
+            'age' => $json->age,
+            'selectedSex' => $json->selectedSex,
+            'contact_num' => $json->contact_num,
+            'selectedBarangay' => $json->selectedBarangay,
+            'date' => $json->date,
+            'time' => $json->time,
+            'selectedDoctor' => $json->selectedDoctor,
+            'reason' => $json->reason,
+        ];
+        $main = new AppointmentModel();
+        $r = $main->save($data);
+        return $this->respond($r, 200);
     }
 }

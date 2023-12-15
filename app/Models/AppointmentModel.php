@@ -4,16 +4,31 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class User_AppointmentModel extends Model
+class AppointmentModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'user_appointments';
+    protected $table            = 'appointments';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['patient_name', 'schedule', 'doctor', 'reason', 'status'];
+    protected $allowedFields    = [
+        'reference_id',
+        'first_name',
+        'middle_name',
+        'last_name',
+        'birthdate',
+        'age',
+        'sex',
+        'contact_num',
+        'barangay',
+        'date',
+        'time',
+        'doctor',
+        'reason',
+        'status',
+    ];
 
     // Dates
     protected $useTimestamps = false;
