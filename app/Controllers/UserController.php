@@ -12,9 +12,11 @@ use App\Models\AppointmentModel;
 
 
 use App\Controllers\BaseController;
+use App\Models\UsersModel;
 
 class UserController extends ResourceController
 {
+    use ResponseTrait;
     //REGISTER
     // public function register(){
     //     // Assuming you have received the email and password from the registration form
@@ -35,24 +37,116 @@ class UserController extends ResourceController
     
     //     // You might want to add some success handling here
     // }
-    
+    // public function register(){
+    //     helper(['form']);
+    //     //rules for validation
+    //     $rules = [
+    //         'first_name'         => 'required|min_length[3]|max_length[20]',
+    //         'last_name'          => 'required|min_length[3]|max_length[20]',
+    //         'email'                 => 'required|min_length[6]|max_length[50]|valid_email|is_unique[users_tbl.email]',
+    //         'password'          => 'required|min_length[6]|max_length[200]',
+    //         'confpassword'   => 'matches[password]'
+    //     ];
+    //     if($this->validate($rules)){
+    //         $model = new UsersModel();
+    //         $data = [
+    //             'first_name' => $this->request->getVar('first_name'),
+    //             'last_name' => $this->request->getVar('last_name'),
+    //             'email' => $this->request->getVar('email'),
+    //             'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+    //         ];
+    //         $model->save($data);
+    //         return redirect()->to('/');
+    //     } else {
+    //         $data['validation'] = $this->validator;
+    //         echo view('register', $data);
+    //     }
+    // }
+    public function register(){
+        $user = new UsersModel();
+        $token = $this->for_token(50);
+
+        // Get role from the request or set a default role
+        $selectedRole = $this->request->getVar('role') ?? 'user';
+
+        // Validate if the selected role is valid (optional)
+        $validRoles = ['admin', 'user', 'staff', 'doctor']; // Define your valid roles
+        if (!in_array($selectedRole, $validRoles)) {
+            return $this->respond(['msg' => 'Invalid role']);
+        }
+
+        $data = [
+            'first_name' => $this->request->getVar('first_name'),
+            'last_name' => $this->request->getVar('last_name'),
+            'email' => $this->request->getVar('email'),
+            'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+            'token' => $token,
+            'status' => 'active',
+            'role' => $selectedRole, // Use the selected role
+        ];
+        $us = $user->save($data);
+        if ($us) {
+            return $this->respond(['msg' => 'okay', 'token' => $token]);
+        } else {
+            return $this->respond(['msg' => 'failed']);
+        }
+    }
+
+    public function for_token($length){
+        $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()-_=+[]{}|;:,.<>?';
+        return substr(str_shuffle($str_result), 0, $length);
+    }
+
+    // public function login(){
+    //     $email = $this->request->getVar("email");
+    //     $password = $this->request->getVar("password");
+    //     $user = new UserModel();
+    //     $data = $user->where('email', $email)->first();
+    //     if ($data) {
+    //         $pass = $data['password'];
+    //         $authenticatedPassword = password_verify($password, $pass);
+    //         if($authenticatedPassword){
+    //             return $this->respond(['msg' => 'okay', 'token' => $data['token']], 200);
+    //         }
+    //         else{
+    //             return $this->respond(['msg' => 'Invalid Password'], 200);
+    //         }
+    //     }
+    //     else{
+    //         return $this->respond(['msg' => 'No User Found']);
+    //     }
+    // }
+
     public function login(){
-        $email = $this->request->getVar("email");
-        $password = $this->request->getVar("password");
-        $user = new UserModel();
+        $user = new UsersModel();
+        $email = $this->request->getVar('email');
+        $password = $this->request->getVar('password');
         $data = $user->where('email', $email)->first();
+
         if ($data) {
             $pass = $data['password'];
             $authenticatedPassword = password_verify($password, $pass);
             if($authenticatedPassword){
-                return $this->respond(['msg' => 'okay', 'token' => $data['token']], 200);
-            }
-            else{
+                // Return role-specific response
+                $role = $data['role'];
+                $token = $data['token'];
+
+                switch ($role) {
+                    case 'admin':
+                        return $this->respond(['msg' => 'okay', 'token' => $token, 'role' => 'admin', 'redirect' => '/AdminPanel']);
+                        break;
+                    case 'staff':
+                        return $this->respond(['msg' => 'okay', 'token' => $token, 'role' => 'staff', 'redirect' => '/staffPanel']);
+                        break;
+                    case 'user':
+                        return $this->respond(['msg' => 'okay', 'token' => $token, 'role' => 'user', 'redirect' => '/UserPanel']);
+                        break;
+                    default:
+                        return $this->respond(['msg' => 'okay', 'token' => $token, 'role' => 'guest', 'redirect' => '/DefaultPanel']);
+                }
+            } else {
                 return $this->respond(['msg' => 'Invalid Password'], 200);
             }
-        }
-        else{
-            return $this->respond(['msg' => 'No User Found']);
         }
     }
     
