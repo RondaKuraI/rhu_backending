@@ -9,6 +9,7 @@ use App\Models\User_AppointmentModel;
 use App\Models\User_RecordsModel;
 use App\Models\PatientRecordsModel;
 use App\Models\AppointmentModel;
+use App\Models\MedicineModel;
 
 
 use App\Controllers\BaseController;
@@ -221,5 +222,12 @@ class UserController extends ResourceController
         $main = new AppointmentModel();
         $r = $main->save($data);
         return $this->respond($r, 200);
+    }
+
+    public function getMedicines()
+    {
+      $medicine  = new MedicineModel();
+      $data = $medicine->findAll();
+      return   $this->respond($data, 200);
     }
 }
