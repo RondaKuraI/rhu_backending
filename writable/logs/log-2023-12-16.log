@@ -145,3 +145,31 @@ in SYSTEMPATH\Database\BaseConnection.php on line 646.
  8 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UserController))
  9 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
 10 FCPATH\index.php(86): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-16 21:24:38 --> Undefined property: stdClass::$selectedSex
+in APPPATH\Controllers\UserController.php on line 191.
+ 1 APPPATH\Controllers\UserController.php(191): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$selectedSex', 'C:\\laragon\\www\\rhu_backending\\app\\Controllers\\UserController.php', 191)
+ 2 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\UserController->save()
+ 3 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UserController))
+ 4 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(86): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-16 21:25:42 --> Undefined property: stdClass::$selectedSex
+in APPPATH\Controllers\UserController.php on line 191.
+ 1 APPPATH\Controllers\UserController.php(191): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$selectedSex', 'C:\\laragon\\www\\rhu_backending\\app\\Controllers\\UserController.php', 191)
+ 2 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\UserController->save()
+ 3 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UserController))
+ 4 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(86): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-16 21:27:16 --> Undefined property: stdClass::$selectedSex
+in APPPATH\Controllers\UserController.php on line 191.
+ 1 APPPATH\Controllers\UserController.php(191): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$selectedSex', 'C:\\laragon\\www\\rhu_backending\\app\\Controllers\\UserController.php', 191)
+ 2 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\UserController->save()
+ 3 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UserController))
+ 4 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(86): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-16 21:30:44 --> Undefined property: stdClass::$selectedSex
+in APPPATH\Controllers\UserController.php on line 191.
+ 1 APPPATH\Controllers\UserController.php(191): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$selectedSex', 'C:\\laragon\\www\\rhu_backending\\app\\Controllers\\UserController.php', 191)
+ 2 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\UserController->save()
+ 3 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UserController))
+ 4 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(86): CodeIgniter\CodeIgniter->run()

@@ -1,0 +1,14 @@
+CRITICAL - 2023-12-17 10:27:02 --> CodeIgniter\BaseModel::findAll(): Argument #1 ($limit) must be of type int, string given, called in C:\laragon\www\rhu_backending\app\Controllers\UserController.php on line 187
+in SYSTEMPATH\BaseModel.php on line 607.
+ 1 APPPATH\Controllers\UserController.php(187): CodeIgniter\BaseModel->findAll('email')
+ 2 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\UserController->getAllAppointment_Data()
+ 3 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UserController))
+ 4 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(86): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-17 10:27:42 --> CodeIgniter\BaseModel::findAll(): Argument #1 ($limit) must be of type int, string given, called in C:\laragon\www\rhu_backending\app\Controllers\UserController.php on line 187
+in SYSTEMPATH\BaseModel.php on line 607.
+ 1 APPPATH\Controllers\UserController.php(187): CodeIgniter\BaseModel->findAll('email')
+ 2 SYSTEMPATH\CodeIgniter.php(919): App\Controllers\UserController->getAllAppointment_Data()
+ 3 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UserController))
+ 4 SYSTEMPATH\CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(86): CodeIgniter\CodeIgniter->run()

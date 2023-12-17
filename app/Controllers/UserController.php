@@ -162,9 +162,29 @@ class UserController extends ResourceController
         return $this->respond($data, 200);
     }
 
-    public function getAppointment_Data(){
+    public function getAppointment_Data($email = null){
+        // $main = new AppointmentModel();
+        // $data = $main->findAll();
+        // return $this->respond($data, 200);
+        try {
+            $main = new AppointmentModel();
+
+            if ($email !== null){
+                $data = $main->where('email', $email)->findAll();
+            }
+            else {
+                $data = $main->findAll();
+            }
+
+            return $this->respond($data, 200);
+        } catch (\Exception $e) {
+            return $this->failServerError('Error fetching appointments');
+        }
+    }
+
+    public function getAllAppointment_Data(){
         $main = new AppointmentModel();
-        $data = $main->findAll();
+        $data = $main->distinct('email')->findAll();
         return $this->respond($data, 200);
     }
 
@@ -188,13 +208,15 @@ class UserController extends ResourceController
             'last_name' => $json->last_name,
             'birthdate' => $json->birthdate,
             'age' => $json->age,
-            'selectedSex' => $json->selectedSex,
+            'sex' => $json->sex,
+            'email' => $json->email,
             'contact_num' => $json->contact_num,
-            'selectedBarangay' => $json->selectedBarangay,
+            'barangay' => $json->barangay,
             'date' => $json->date,
             'time' => $json->time,
-            'selectedDoctor' => $json->selectedDoctor,
+            'doctor' => $json->doctor,
             'reason' => $json->reason,
+            'status' => 'pending',
         ];
         $main = new AppointmentModel();
         $r = $main->save($data);

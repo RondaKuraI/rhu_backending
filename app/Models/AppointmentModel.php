@@ -21,6 +21,7 @@ class AppointmentModel extends Model
         'birthdate',
         'age',
         'sex',
+        'email',
         'contact_num',
         'barangay',
         'date',
