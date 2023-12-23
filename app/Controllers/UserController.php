@@ -158,7 +158,7 @@ class UserController extends ResourceController
     }
 
     public function getData(){
-        $main = new User_AppointmentModel();
+        $main = new UsersModel();
         $data = $main->findAll();
         return $this->respond($data, 200);
     }

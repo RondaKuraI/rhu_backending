@@ -4,16 +4,16 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class MedicineModel extends Model
+class AuditModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'medicines';
+    protected $table            = 'audit';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['ndc', 'med_name', 'med_type', 'stocks', 'expiry_date', 'status'];
+    protected $allowedFields    = ['medicineID','oldStocks', 'stocks', 'type'];
 
     // Dates
     protected $useTimestamps = false;

@@ -13,6 +13,10 @@ $routes->get('/getAppointment_Data/(:any)', 'UserController::getAppointment_Data
 $routes->get('/getAllAppointment_Data', 'UserController::getAllAppointment_Data');
 $routes->get('/getData2', 'UserController::getData2');
 $routes->get('/getpatrecData', 'UserController::getpatrecData');
-$routes->match(['get', 'post'], '/api/getMedicines', 'Home::getMedicines');
 
 $routes->post('/save', 'UserController::save');
+
+$routes->match(['get', 'post'], '/api/getMedicines', 'AdminController::getMedicines');
+$routes->match(['get', 'post'], '/api/newmedicine', 'AdminController::newmedicine');
+$routes->put('/api/updateMedicine/(:num)', 'AdminController::updateMedicine/$1');
+$routes->match(['get', 'post'], '/api/updateStocks', 'AdminController::updateStocks');
