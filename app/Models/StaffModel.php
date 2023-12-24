@@ -4,26 +4,16 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PatientRecordsModel extends Model
+class StaffModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'patient_records';
+    protected $table            = 'staffs';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [
-        'reference_id',
-        'first_name',
-        'middle_name',
-        'last_name',
-        'birthdate',
-        'age',
-        'sex',
-        'contact_num',
-        'barangay',
-    ];
+    protected $allowedFields    = [];
 
     // Dates
     protected $useTimestamps = false;

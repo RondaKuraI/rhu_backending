@@ -185,7 +185,7 @@ class UserController extends ResourceController
 
     public function getAllAppointment_Data(){
         $main = new AppointmentModel();
-        $data = $main->distinct('email')->findAll();
+        $data = $main->findAll();
         return $this->respond($data, 200);
     }
 
@@ -224,10 +224,27 @@ class UserController extends ResourceController
         return $this->respond($r, 200);
     }
 
-    public function getMedicines()
-    {
-      $medicine  = new MedicineModel();
-      $data = $medicine->findAll();
-      return   $this->respond($data, 200);
+    public function newpatient(){
+        $json = $this->request->getJSON();
+        $data = [
+            'first_name' => $json->first_name,
+            'last_name' => $json->last_name,
+            'birthdate' => $json->birthdate,
+            'age' => $json->age,
+            'sex' => $json->sex,
+            'contact_num' => $json->contact_num,
+            'barangay' => $json->barangay,
+        ];
+        $model = new AppointmentModel();
+        $r = $model->save($data);
+        return $this->respond($r, 200);
+    }
+
+    public function updatePatient($id){
+        $data = $this->request->getJSON();
+        $model = new AppointmentModel();
+        $model->update($id, $data);
+
+        return $this->respond(['status' => 'success', 'message' => 'Product Updated Successfully!']);
     }
 }

@@ -65,6 +65,12 @@ class AdminController extends ResourceController
         ];
         $audit->save($data);
       }
+    }
 
+    public function audit($id)
+    {
+      $audit = new AuditModel();
+      $data = $audit->select('medicines.ndc as ndc, medicines.med_name as med_name, medicines.med_type as med_type, audit.oldStocks as oldStocks, audit.stocks as stocks, audit.type as type')->join('medicines', 'audit.medicineID=medicines.id')->where('medicines.ndc', $id)->findAll();
+      return $this->respond($data,200);
     }
 }
