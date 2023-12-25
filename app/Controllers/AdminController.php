@@ -9,6 +9,7 @@ use App\Models\StaffModel;
 use CodeIgniter\API\ResponseTrait;
 
 use App\Controllers\BaseController;
+use App\Models\AppointmentModel;
 
 class AdminController extends ResourceController
 {
@@ -92,6 +93,28 @@ class AdminController extends ResourceController
     {
       $data = $this->request->getJSON(); 
        $model = new StaffModel();
+       $model->update($id, $data);
+
+       return $this->respond(['status' => 'success', 'message' => 'Product updated successfully']);
+    }
+
+    public function getAppointment(){
+      $main = new AppointmentModel();
+      $data = $main->findAll();
+      return $this->respond($data, 200);
+  }
+
+    public function newappointment()
+    {
+      $data = $this->request->getJSON();
+        $model = new AppointmentModel();
+        $model->insert($data);
+    }
+
+    public function updateAppointment($id)
+    {
+      $data = $this->request->getJSON(); 
+       $model = new AppointmentModel();
        $model->update($id, $data);
 
        return $this->respond(['status' => 'success', 'message' => 'Product updated successfully']);

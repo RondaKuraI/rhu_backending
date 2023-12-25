@@ -25,6 +25,10 @@ $routes->match(['get', 'post'], '/api/audit/(:any)', 'AdminController::audit/$1'
 $routes->match(['get', 'post'], '/api/getStaffs', 'AdminController::getStaffs');
 $routes->match(['get', 'post'], '/api/newstaff', 'Home::newstaff');
 $routes->put('api/updatestaff/(:num)', 'Home::updateStaff/$1');
+$routes->get('/api/getAppointment', 'AdminController::getAppointment');
+$routes->match(['get', 'post'], '/api/newappointment', 'AdminController::newappointment');
+$routes->put('api/updateappointment/(:num)', 'AdminController::updateAppointment/$1');
+
 
 
 
