@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\MedicineModel;
 use App\Models\AuditModel;
+use App\Models\StaffModel;
 use CodeIgniter\API\ResponseTrait;
 
 use App\Controllers\BaseController;
@@ -72,5 +73,27 @@ class AdminController extends ResourceController
       $audit = new AuditModel();
       $data = $audit->select('medicines.ndc as ndc, medicines.med_name as med_name, medicines.med_type as med_type, audit.oldStocks as oldStocks, audit.stocks as stocks, audit.type as type')->join('medicines', 'audit.medicineID=medicines.id')->where('medicines.ndc', $id)->findAll();
       return $this->respond($data,200);
+    }
+
+    public function getStaffs(){
+      $model = new StaffModel();
+      $data = $model->findAll();
+      return $this->respond($data, 200);
+  }
+
+  public function newstaff()
+    {
+      $data = $this->request->getJSON();
+        $model = new StaffModel();
+        $model->insert($data);
+    }
+
+    public function updateStaff($id)
+    {
+      $data = $this->request->getJSON(); 
+       $model = new StaffModel();
+       $model->update($id, $data);
+
+       return $this->respond(['status' => 'success', 'message' => 'Product updated successfully']);
     }
 }
